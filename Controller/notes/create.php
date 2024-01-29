@@ -1,16 +1,17 @@
 <?php
 
-require 'Validator.php';
-$config = require 'config.php';
+use Core\DataBase;
+
+require base_path('Core/Validator.php');
+$config = require base_path('config.php');
 
 $db = new DataBase($config['database']);
 
 $heading = 'Create New Note';
 
+$errors = [];
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-
-    $errors = [];
 
     if(!Validator::string($_POST['body'],1,1000)){
         $errors['body'] = 'dash matnet bayad beyn 1 ta 1,000 bashe';
@@ -22,4 +23,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 }
 
 
-require 'view/notes/create.view.php';
+view('notes/create.view.php',[
+    'heading' => 'Create New Note',
+    'errors' => $errors
+]);
