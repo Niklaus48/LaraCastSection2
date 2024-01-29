@@ -3,6 +3,7 @@
 class DataBase
 {
     public $connection;
+    public $statement;
     public function __construct($config,$user = 'root',$password = '')
     {
 
@@ -12,12 +13,33 @@ class DataBase
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         ]);
     }
-    public function query($query)
+    public function query($query,$param = [])
     {
-        $statement = $this->connection->prepare($query);
+        $this->statement = $this->connection->prepare($query);
 
-        $statement->execute();
+        $this->statement->execute($param);
 
-        return $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $this;
+    }
+
+    public function Get()
+    {
+        return $this->statement->fetchall(PDO::FETCH_ASSOC);
+    }
+
+    public function find()
+    {
+        return $this->statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function findOrFail()
+    {
+        $resault = $this->find();
+
+        if(!$resault){
+            abord();
+        }
+
+        return $resault;
     }
 }
