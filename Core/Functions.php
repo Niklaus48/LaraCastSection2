@@ -5,6 +5,13 @@ function UrlIs (string $value) : bool
     return $_SERVER['REQUEST_URI'] === $value;
 }
 
+function abord($code = 404): void
+{
+    require base_path("view/{$code}.php");
+
+    die();
+}
+
 function authoriz($condition,$status)
 {
     if(!$condition){

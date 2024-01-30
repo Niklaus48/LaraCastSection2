@@ -14,7 +14,7 @@
             <?php endforeach;?>
 
             <p class="mt-6">
-                <a href="/notes/create" class="text-blue-500 hover:underline">
+                <a href="/note/create" class="text-blue-500 hover:underline">
                     *Create New Note
                 </a>
             </p>
