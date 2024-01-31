@@ -10,9 +10,13 @@
 
             <form method="post">
                 <input type="hidden" name="_method" value="DELETE">
-                <input type="hidden" name="id" value=<?= $note['id'] ?>>
+                <input type="hidden" name="id" value=<?= $note['id'] ?> >
                 <button type="submit" class="text-red-500 mt-6 hover:underline"> delete </button>
             </form>
+
+            <footer class="mt-6">
+                <a href="/note/edit?id=<?=$note['id']?>" class="text-orange-500"> Edit </a>
+            </footer>
         </div>
     </main>
 </div>
